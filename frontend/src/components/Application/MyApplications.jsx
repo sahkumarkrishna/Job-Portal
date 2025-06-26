@@ -22,8 +22,8 @@ const MyApplications = () => {
 
         const endpoint =
           user.role === "Employer"
-            ? `${config.backendUrl}/application/employer/getall`
-            : `${config.backendUrl}/application/jobseeker/getall`;
+            ? `${API}/application/employer/getall`
+            : `${API}/application/jobseeker/getall`;
 
         const res = await axios.get(endpoint, {
           withCredentials: true,
