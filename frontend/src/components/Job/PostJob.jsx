@@ -3,8 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
-
-const API = import.meta.env.VITE_API_URL;
+import config from "../../config"
 
 const PostJob = () => {
   const [title, setTitle] = useState("");
@@ -45,7 +44,7 @@ const PostJob = () => {
         : { title, description, category, country, city, location, salaryFrom, salaryTo };
 
     try {
-      const { data } = await axios.post(`${API}/job/post`, jobData, {
+      const { data } = await axios.post(`${config.backendUrl}/job/post`, jobData, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       });

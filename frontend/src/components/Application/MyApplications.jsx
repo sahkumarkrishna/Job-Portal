@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
 
-const API = import.meta.env.VITE_API_URL;
+import config from "../../config"
 
 const MyApplications = () => {
   const { user, isAuthorized } = useContext(Context);
@@ -22,8 +22,8 @@ const MyApplications = () => {
 
         const endpoint =
           user.role === "Employer"
-            ? `${API}/application/employer/getall`
-            : `${API}/application/jobseeker/getall`;
+            ? `${config.backendUrl}/application/employer/getall`
+            : `${config.backendUrl}/application/jobseeker/getall`;
 
         const res = await axios.get(endpoint, {
           withCredentials: true,

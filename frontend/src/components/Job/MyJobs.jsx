@@ -6,7 +6,7 @@ import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL;
+import config from "../../config"
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -55,7 +55,7 @@ const MyJobs = () => {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      const { data } = await axios.delete(`${API}/job/delete/${jobId}`, {
+      const { data } = await axios.delete(`${config.backendUrl}/job/delete/${jobId}`, {
         withCredentials: true,
       });
       toast.success(data.message);

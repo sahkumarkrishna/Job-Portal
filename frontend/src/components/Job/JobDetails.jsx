@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Context } from "../../main";
+import config from "../../config"
+
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -18,7 +19,7 @@ const JobDetails = () => {
     }
 
     axios
-      .get(`${API}/job/${id}`, { withCredentials: true })
+      .get(`${config.backendUrl}/job/${id}`, { withCredentials: true })
       .then((res) => {
         setJob(res.data.job);
       })

@@ -6,6 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
+import config from "../../config"
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -20,7 +21,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `${API}/user/login`,
+        `${config.backendUrl}/user/login`,
         { email, password, role },
         {
           headers: {
