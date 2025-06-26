@@ -26,6 +26,12 @@ app.use(
   })
 );
 
+// Add this manual override just in case
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 
 app.use(cookieParser());
 app.use(express.json());
