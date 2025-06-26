@@ -1,31 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+
+const API = import.meta.env.VITE_API_URL;
+
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
   const navigateTo = useNavigate();
-
   const { isAuthorized, user } = useContext(Context);
 
   useEffect(() => {
+    if (!isAuthorized) {
+      navigateTo("/login");
+      return;
+    }
+
     axios
-      .get(`http://localhost:4000/api/v1/job/${id}`, {
-        withCredentials: true,
-      })
+      .get(`${API}/job/${id}`, { withCredentials: true })
       .then((res) => {
         setJob(res.data.job);
       })
       .catch((error) => {
         navigateTo("/notfound");
       });
-  }, []);
-
-  if (!isAuthorized) {
-    navigateTo("/login");
-  }
+  }, [id, isAuthorized]);
 
   return (
     <section className="jobDetail page">
@@ -33,7 +33,7 @@ const JobDetails = () => {
         <h3>Job Details</h3>
         <div className="banner">
           <p>
-            Title: <span> {job.title}</span>
+            Title: <span>{job.title}</span>
           </p>
           <p>
             Category: <span>{job.category}</span>
@@ -63,6 +63,7 @@ const JobDetails = () => {
               </span>
             )}
           </p>
+
           {user && user.role === "Employer" ? (
             <></>
           ) : (
