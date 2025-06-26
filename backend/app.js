@@ -18,11 +18,12 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: process.env.FRONTEND_URL, // ❌ REMOVE the array brackets
     methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
