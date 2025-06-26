@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 
-import config from "../../config"
+const API = import.meta.env.VITE_API_URL;
 
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -19,7 +19,7 @@ const Jobs = () => {
 
     const fetchJobs = async () => {
       try {
-        const res = await axios.get(`${config.backendUrl}/job/getall`, {
+        const res = await axios.get(`${API}/job/getall`, {
           withCredentials: true,
         });
         setJobs(res.data.jobs || []);

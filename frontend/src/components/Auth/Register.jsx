@@ -8,7 +8,6 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Context } from "../../main";
-import config from "../../config"
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -25,7 +24,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `$${config.backendUrl}/user/register`,
+        `${API}/user/register`,
         { name, phone, email, role, password },
         {
           headers: {

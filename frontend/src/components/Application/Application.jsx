@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import { Context } from "../../main";
 
-import config from "../../config"
+const API = import.meta.env.VITE_API_URL;
 
 const Application = () => {
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ const Application = () => {
     formData.append("jobId", id);
 
     try {
-      const { data } = await axios.post( `${config.backendUrl}/application/post`, formData, {
+      const { data } = await axios.post( `${API}/application/post`, formData, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",

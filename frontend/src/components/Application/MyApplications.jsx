@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
 
-import config from "../../config"
+const API = import.meta.env.VITE_API_URL;
 
 const MyApplications = () => {
   const { user, isAuthorized } = useContext(Context);

@@ -16,7 +16,7 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
-import config from './config'
+const API = import.meta.env.VITE_API_URL;
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -24,7 +24,7 @@ const App = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `${config.backendUrl}/api/v1/user/getuser`,
+          `${API}/user/getuser`,
           {
             withCredentials: true,
           }

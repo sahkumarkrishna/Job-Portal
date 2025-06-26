@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { GiHamburgerMenu } from "react-icons/gi";
-import config from "../../config"
+const API = import.meta.env.VITE_API_URL;
+
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
@@ -13,7 +14,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        `${config.backendUrl}/user/logout`,
+        `${API}/user/logout`,
         {
           withCredentials: true,
         }
