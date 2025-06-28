@@ -20,12 +20,11 @@ const app = express();
 
 app.use(
   cors({
-    origin:  process.env.FRONTEND_URL ||"https://job-portal-osf5.vercel.app" ,
+    origin:  process.env.FRONTEND_URL ||"https://job-portal-osf5.vercel.app/login" ,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
 
 
 app.use(cookieParser());
