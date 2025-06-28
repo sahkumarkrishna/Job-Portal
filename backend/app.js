@@ -20,21 +20,13 @@ const app = express();
 
 app.use(
   cors({
-    origin:  process.env.FRONTEND_URL ,
+    origin:  process.env.FRONTEND_URL ||"https://job-portal-osf5.vercel.app/login" ,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
-// Add this manual override just in case
-// Optional: manual headers (in case Vercel edge caches override CORS headers)
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+/
 
 app.use(cookieParser());
 app.use(express.json());
