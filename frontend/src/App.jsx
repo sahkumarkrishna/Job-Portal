@@ -16,27 +16,11 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
-const API = import.meta.env.VITE_API_URL;
+
 
 const App = () => {
-  const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          `${API}/user/getuser`,
-          {
-            withCredentials: true,
-          }
-        );
-        setUser(response.data.user);
-        setIsAuthorized(true);
-      } catch (error) {
-        setIsAuthorized(false);
-      }
-    };
-    fetchUser();
-  }, [isAuthorized]);
+
+ 
 
   return (
     <>
